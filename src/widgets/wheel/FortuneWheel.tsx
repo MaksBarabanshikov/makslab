@@ -66,7 +66,7 @@ export default function FortuneWheelClassic() {
   };
 
   return (
-    <div className="relative flex w-full min-h-screen bg-gray-900 text-white p-4 md:p-8 gap-8 flex-col lg:flex-row overflow-hidden">
+    <div className="relative flex w-full min-h-screen p-4 md:p-8 gap-8 flex-col lg:flex-row overflow-hidden">
       {showConfetti && (
         <ReactConfetti
           width={windowSize.width}
