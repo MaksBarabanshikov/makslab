@@ -1,4 +1,5 @@
 "use client"
+import { Button } from '@/shared/ui/button';
 import './styles.css'; // Твой файл стилей
 
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
@@ -169,13 +170,14 @@ export default function FortuneWheel({
       </ul>
 
       <div className="ticker" ref={tickerRef}></div>
-      <button
+      <Button
           onClick={spin}
           disabled={isSpinning}
-          className="btn-spin mt-4 px-6 py-2 bg-pink-500 hover:bg-pink-600 transition rounded-full text-lg font-semibold disabled:opacity-50"
+          className="btn-spin"
+          variant={'secondary'}
         >
           Крутить
-        </button>
+        </Button>
     </div>
   );
 }

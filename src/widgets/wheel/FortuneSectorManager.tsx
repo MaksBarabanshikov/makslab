@@ -3,6 +3,11 @@
 import { useState, ChangeEvent } from 'react'
 import { Prize } from './Wheel' 
 
+import { Input } from "@/shared/ui/input"
+import { Button } from "@/shared/ui/button"
+
+import { X, Plus } from 'lucide-react'
+
 interface SectorManagerProps {
   sectors: Prize[];
   onSectorsChange: (newSectors: Prize[]) => void;
@@ -13,11 +18,8 @@ export default function FortuneSectorManager({ sectors, onSectorsChange }: Secto
 
   const handleAdd = (): void => {
     if (inputValue.trim()) {
-      // Создаем новый массив, включая существующие секции и новую
       const newSectors = [...sectors, { text: inputValue }];
-      // Передаем обновленный массив родительскому компоненту
       onSectorsChange(newSectors);
-      // Очищаем поле ввода
       setInputValue('');
     }
   }
@@ -39,42 +41,45 @@ export default function FortuneSectorManager({ sectors, onSectorsChange }: Secto
       <ul className="flex flex-col gap-2 mb-4">
         {sectors.map((sector, i) => (
           <li key={i} className="flex items-center gap-2">
-            <input
+            <Input
               type="text"
-              className="bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 flex-1"
               value={sector.text}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleLabelChange(i, e.target.value)
               }
+              className="flex-1"
+              aria-label={`Редактировать секцию ${sector.text}`}
             />
-            <button
+            <Button
+              variant="outline"
+              size="icon"  
               onClick={() => handleRemove(i)}
-              className="text-red-400 hover:text-red-600"
-              aria-label={`Удалить секцию ${sector.text}`} 
+              aria-label={`Удалить секцию ${sector.text}`}
+              className="text-red-500 hover:text-red-700" 
             >
-              ×
-            </button>
+              <X className="h-4 w-4" /> 
+            </Button>
           </li>
         ))}
       </ul>
       <div className="flex gap-2">
-        <input
+      <Input
           type="text"
-          placeholder="Добавить секцию"
-          className="bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 flex-1"
+          placeholder="Название новой секции"
           value={inputValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setInputValue(e.target.value)
           }
           onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
+          className="flex-1"
         />
-        <button
+        <Button
           onClick={handleAdd}
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded"
-          disabled={!inputValue.trim()} 
+          disabled={!inputValue.trim()}
         >
-          Добавить
-        </button>
+           <Plus className="mr-2 h-4 w-4" /> 
+           Добавить
+        </Button>
       </div>
     </div>
   );
