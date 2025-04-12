@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -12,11 +12,11 @@ export const ThemeToggle = () => {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="p-2 rounded-full transition hover:bg-primary/20"
       aria-label="Переключить тему"
     >
-      {theme === "dark" ? "🌙" : "☀️"}
+      {theme === 'dark' ? '🌙' : '☀️'}
     </button>
   );
 };

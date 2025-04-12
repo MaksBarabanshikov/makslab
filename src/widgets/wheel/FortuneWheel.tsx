@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import FortuneWheel, { Prize } from './Wheel'
-import FortuneSectorManager from './FortuneSectorManager'
+import { useEffect, useState } from 'react';
+import FortuneWheel, { Prize } from './Wheel';
+import FortuneSectorManager from './FortuneSectorManager';
 import {
   Dialog,
   DialogContent,
@@ -11,10 +11,10 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-} from '@/shared/ui/dialog'
+} from '@/shared/ui/dialog';
 
-import ReactConfetti from 'react-confetti'
-import { Button } from '@/shared/ui/button'
+import ReactConfetti from 'react-confetti';
+import { Button } from '@/shared/ui/button';
 
 const DEFAULT_SECTORS: Prize[] = [
   { text: '🍕 Пицца' },
@@ -22,8 +22,8 @@ const DEFAULT_SECTORS: Prize[] = [
   { text: '😢 Ничего' },
   { text: '🎁 Подарок' },
   { text: '🔥 Джекпот' },
-  { text: '💩' }
-]
+  { text: '💩' },
+];
 
 export default function FortuneWheelClassic() {
   const [sectors, setSectors] = useState<Prize[]>(DEFAULT_SECTORS);
@@ -45,25 +45,25 @@ export default function FortuneWheelClassic() {
   }, []);
 
   const handleWheelResult = (prize: Prize) => {
-    setWinningPrize(prize); 
-    setIsModalOpen(true);   
+    setWinningPrize(prize);
+    setIsModalOpen(true);
     setShowConfetti(true);
   };
-  
+
   const handleSectorsChange = (newSectors: Prize[]) => {
     setSectors(newSectors);
-    setWinningPrize(null); 
-    setIsModalOpen(false); 
+    setWinningPrize(null);
+    setIsModalOpen(false);
     setShowConfetti(false);
   };
 
   const handleModalOpenChange = (open: boolean) => {
     setIsModalOpen(open);
     if (!open) {
-       setShowConfetti(false);
-       setWinningPrize(null);
+      setShowConfetti(false);
+      setWinningPrize(null);
     }
- }
+  };
 
   return (
     <div className="relative flex w-full min-h-screen bg-gray-900 text-white p-4 md:p-8 gap-8 flex-col lg:flex-row overflow-hidden">
@@ -71,20 +71,21 @@ export default function FortuneWheelClassic() {
         <ReactConfetti
           width={windowSize.width}
           height={windowSize.height}
-          recycle={false} 
-          numberOfPieces={500} 
+          recycle={false}
+          numberOfPieces={500}
           gravity={0.15}
           className="absolute top-0 left-0 w-full h-full z-50"
         />
       )}
       <div className="flex flex-col items-center gap-4">
-        <FortuneWheel key={JSON.stringify(sectors)} prizes={sectors} onResult={handleWheelResult}></FortuneWheel>
+        <FortuneWheel
+          key={JSON.stringify(sectors)}
+          prizes={sectors}
+          onResult={handleWheelResult}
+        ></FortuneWheel>
       </div>
       <div className="flex-1">
-        <FortuneSectorManager
-          sectors={sectors} 
-          onSectorsChange={handleSectorsChange} 
-        />
+        <FortuneSectorManager sectors={sectors} onSectorsChange={handleSectorsChange} />
       </div>
       <Dialog open={isModalOpen} onOpenChange={handleModalOpenChange}>
         <DialogContent className="sm:max-w-[425px] bg-gray-800 border-gray-700 text-white">
@@ -110,5 +111,5 @@ export default function FortuneWheelClassic() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
