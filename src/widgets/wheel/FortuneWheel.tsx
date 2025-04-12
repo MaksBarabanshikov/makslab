@@ -95,9 +95,9 @@ export default function FortuneWheelClassic() {
             </DialogTitle>
             <DialogDescription className="text-center text-gray-300 pt-4 text-lg">
               Вы выиграли:
-              <p className="font-bold text-3xl text-green-400 pt-2 pb-4 underline">
+              <span className="block font-bold text-3xl text-green-400 pt-2 pb-4 underline">
                 {winningPrize?.text ?? 'Что-то невероятное!'}
-              </p>
+              </span>
               Желаем удачи в следующий раз!
             </DialogDescription>
           </DialogHeader>
