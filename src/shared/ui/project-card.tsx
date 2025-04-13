@@ -23,7 +23,7 @@ export const ProjectCard = ({ title, description, tech, image }: ProjectCardProp
         <p className="text-sm text-muted-foreground mb-3">{description}</p>
         <div className="flex flex-wrap gap-2">
           {tech.map((item, i) => (
-            <span key={i} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+            <span key={i} className="text-xs bg-primary/10 px-2 py-1 rounded">
               {item}
             </span>
           ))}

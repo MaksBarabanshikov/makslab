@@ -3,6 +3,7 @@ import { Button } from '@/shared/ui/button';
 import './styles.css'; // Твой файл стилей
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useTheme } from 'next-themes';
 
 export type Prize = {
   text: string;
@@ -16,9 +17,21 @@ type Props = {
 
 const DEFAULT_SPIN_DURATION = 8000;
 
-function generateColor(index: number, total: number): string {
+function generateColor(index: number, total: number, theme: string | undefined): string {
   const hue = (index * 360) / total;
-  return `hsl(${hue}, 70%, 60%)`;
+
+  let saturation: number;
+  let lightness: number;
+
+  if (theme === 'dark') {
+    saturation = 65;
+    lightness = 70;
+  } else {
+    saturation = 70;
+    lightness = 58;
+  }
+
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 export default function FortuneWheel({
@@ -26,6 +39,7 @@ export default function FortuneWheel({
   onResult,
   spinDuration = DEFAULT_SPIN_DURATION,
 }: Props) {
+  const { theme } = useTheme();
   const dealWheelRef = useRef<HTMLDivElement>(null);
   const spinnerRef = useRef<HTMLUListElement>(null);
   const tickerRef = useRef<HTMLDivElement>(null);
@@ -38,11 +52,24 @@ export default function FortuneWheel({
   const prizeSlice = 360 / (prizes.length || 1);
 
   const createConicGradient = useCallback(() => {
-    if (prizes.length === 0) return 'conic-gradient(white 0 100%)';
-    return `conic-gradient(from -90deg, ${prizes
-      .map((p, i) => `${generateColor(i, prizes.length)} 0 ${(100 / prizes.length) * (i + 1)}%`)
-      .join(', ')})`;
-  }, [prizes]);
+    const currentTheme = theme;
+
+    if (prizes.length === 0) {
+      const fallbackColor = currentTheme === 'dark' ? 'oklch(0.2 0 0)' : 'oklch(0.95 0 0)';
+      return `conic-gradient(${fallbackColor} 0 100%)`;
+    }
+
+    const gradientSegments = prizes
+      .map((_, i) => {
+        const color = generateColor(i, prizes.length, currentTheme);
+        const startAngle = 0;
+        const endAngle = (100 / prizes.length) * (i + 1);
+        return `${color} ${startAngle} ${endAngle}%`;
+      })
+      .join(', ');
+
+    return `conic-gradient(from -90deg, ${gradientSegments})`;
+  }, [prizes, theme]);
 
   useEffect(() => {
     if (spinnerRef.current) {
@@ -145,7 +172,7 @@ export default function FortuneWheel({
   return (
     <div className="deal-wheel" ref={dealWheelRef}>
       <ul
-        className={`spinner border-4 border-white`}
+        className={`spinner border-4 border-primary`}
         ref={spinnerRef}
         style={
           {

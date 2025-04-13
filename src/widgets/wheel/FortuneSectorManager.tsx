@@ -7,6 +7,7 @@ import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 
 import { X, Plus } from 'lucide-react';
+import { ScrollArea } from '@/shared/ui/scroll-area';
 
 interface SectorManagerProps {
   sectors: Prize[];
@@ -38,28 +39,32 @@ export default function FortuneSectorManager({ sectors, onSectorsChange }: Secto
   return (
     <div className="flex-1">
       <h2 className="text-xl font-bold mb-4">Секции</h2>
-      <ul className="flex flex-col gap-2 mb-4">
-        {sectors.map((sector, i) => (
-          <li key={i} className="flex items-center gap-2">
-            <Input
-              type="text"
-              value={sector.text}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleLabelChange(i, e.target.value)}
-              className="flex-1"
-              aria-label={`Редактировать секцию ${sector.text}`}
-            />
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => handleRemove(i)}
-              aria-label={`Удалить секцию ${sector.text}`}
-              className="text-red-500 hover:text-red-700"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </li>
-        ))}
-      </ul>
+      <ScrollArea className="h-[500px] pr-4 pb-1">
+        <ul className="flex flex-col gap-2 mb-4">
+          {sectors.map((sector, i) => (
+            <li key={i} className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={sector.text}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleLabelChange(i, e.target.value)
+                }
+                className="flex-1"
+                aria-label={`Редактировать секцию ${sector.text}`}
+              />
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => handleRemove(i)}
+                aria-label={`Удалить секцию ${sector.text}`}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </ScrollArea>
       <div className="flex gap-2">
         <Input
           type="text"
