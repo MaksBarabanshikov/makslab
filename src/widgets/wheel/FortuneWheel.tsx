@@ -3,18 +3,8 @@
 import { useEffect, useState } from 'react';
 import FortuneWheel, { Prize } from './Wheel';
 import FortuneSectorManager from './FortuneSectorManager';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from '@/shared/ui/dialog';
-
 import ReactConfetti from 'react-confetti';
-import { Button } from '@/shared/ui/button';
+import FortuneCongradulationModal from './FortuneCongradulationModal';
 
 const DEFAULT_SECTORS: Prize[] = [
   { text: '🍕 Пицца' },
@@ -87,29 +77,11 @@ export default function FortuneWheelClassic() {
       <div className="flex-1">
         <FortuneSectorManager sectors={sectors} onSectorsChange={handleSectorsChange} />
       </div>
-      <Dialog open={isModalOpen} onOpenChange={handleModalOpenChange}>
-        <DialogContent className="sm:max-w-[425px] bg-gray-800 border-gray-700 text-white">
-          <DialogHeader>
-            <DialogTitle className="text-2xl text-center text-yellow-400">
-              🎉 Поздравляем! 🎉
-            </DialogTitle>
-            <DialogDescription className="text-center text-gray-300 pt-4 text-lg">
-              Вы выиграли:
-              <span className="block font-bold text-3xl text-green-400 pt-2 pb-4 underline">
-                {winningPrize?.text ?? 'Что-то невероятное!'}
-              </span>
-              Желаем удачи в следующий раз!
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button type="button" variant="default" className="w-full">
-                Закрыть
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <FortuneCongradulationModal
+        isOpen={isModalOpen}
+        onOpenChange={handleModalOpenChange}
+        prize={winningPrize}
+      />
     </div>
   );
 }

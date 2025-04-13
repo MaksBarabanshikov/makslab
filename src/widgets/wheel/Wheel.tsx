@@ -2,7 +2,7 @@
 import { Button } from '@/shared/ui/button';
 import './styles.css'; // Твой файл стилей
 
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 export type Prize = {
   text: string;
