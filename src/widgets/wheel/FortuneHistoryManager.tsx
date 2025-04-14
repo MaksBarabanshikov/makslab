@@ -23,7 +23,7 @@ export interface FortuneHistoryManagerRef {
   updateHistoryList: () => void;
 }
 
-const FortuneHistoryManager = forwardRef<FortuneHistoryManagerRef, {}>((props, ref) => {
+const FortuneHistoryManager = forwardRef<FortuneHistoryManagerRef>((_, ref) => {
   const [winHistory, setWinHistory] = useState<Prize[]>([]);
   const [isClient, setIsClient] = useState(false);
 

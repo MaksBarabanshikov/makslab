@@ -115,7 +115,7 @@ export default function FortuneWheel({
 
       setIsSpinning(false);
     },
-    [isSpinning, onResult, prizeSlice, prizes, prizes.length],
+    [isSpinning, onResult, prizeSlice, prizes],
   );
 
   const spin = () => {
