@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/shadcn/button';
 import './styles.css'; // Твой файл стилей
 
 import { useEffect, useRef, useState, useCallback } from 'react';

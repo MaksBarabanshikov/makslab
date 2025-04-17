@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { Button } from './button';
+import { Button } from './shadcn/button';
 
 import { Moon, Sun } from 'lucide-react';
 

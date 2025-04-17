@@ -12,9 +12,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/shared/ui/alert-dialog';
-import { Button } from '@/shared/ui/button';
-import { ScrollArea } from '@/shared/ui/scroll-area';
+} from '@/shared/ui/shadcn/alert-dialog';
+import { Button } from '@/shared/ui/shadcn/button';
+import { ScrollArea } from '@/shared/ui/shadcn/scroll-area';
 import { Trash2, ListX } from 'lucide-react';
 
 export const FORTUNE_HISTORY_KEY = 'fortuneWheelHistory';

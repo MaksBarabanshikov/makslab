@@ -3,11 +3,11 @@
 import { useState, ChangeEvent } from 'react';
 import { Prize } from './Wheel';
 
-import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/shadcn/input';
+import { Button } from '@/shared/ui/shadcn/button';
 
 import { X, Plus } from 'lucide-react';
-import { ScrollArea } from '@/shared/ui/scroll-area';
+import { ScrollArea } from '@/shared/ui/shadcn/scroll-area';
 
 interface SectorManagerProps {
   sectors: Prize[];
@@ -39,6 +39,22 @@ export default function FortuneSectorManager({ sectors, onSectorsChange }: Secto
   return (
     <div className="flex-1">
       <h2 className="text-xl font-bold mb-4">Секции</h2>
+      <div className="flex gap-2 mb-2">
+        <Input
+          type="text"
+          placeholder="Название новой секции"
+          value={inputValue}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleAdd();
+          }}
+          className="flex-1"
+        />
+        <Button onClick={handleAdd} disabled={!inputValue.trim()}>
+          <Plus className="mr-2 h-4 w-4" />
+          Добавить
+        </Button>
+      </div>
       <ScrollArea className="h-[500px] pr-4 pb-1">
         <ul className="flex flex-col gap-2 mb-4">
           {sectors.map((sector, i) => (
@@ -65,22 +81,6 @@ export default function FortuneSectorManager({ sectors, onSectorsChange }: Secto
           ))}
         </ul>
       </ScrollArea>
-      <div className="flex gap-2">
-        <Input
-          type="text"
-          placeholder="Название новой секции"
-          value={inputValue}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') handleAdd();
-          }}
-          className="flex-1"
-        />
-        <Button onClick={handleAdd} disabled={!inputValue.trim()}>
-          <Plus className="mr-2 h-4 w-4" />
-          Добавить
-        </Button>
-      </div>
     </div>
   );
 }

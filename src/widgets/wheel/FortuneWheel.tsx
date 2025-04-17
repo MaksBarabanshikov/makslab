@@ -9,7 +9,7 @@ import FortuneHistoryManager, {
   FORTUNE_HISTORY_KEY,
   FortuneHistoryManagerRef,
 } from './FortuneHistoryManager';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/shadcn/tabs';
 
 const DEFAULT_SECTORS: Prize[] = [
   { text: '🍕 Пицца' },
@@ -90,7 +90,7 @@ export default function FortuneWheelClassic() {
   };
 
   return (
-    <div className="relative flex w-full min-h-screen p-4 md:p-8 gap-8 flex-col lg:flex-row overflow-hidden">
+    <div className="relative flex w-full min-h-screen p-4 md:p-8 gap-8 flex-col lg:flex-row overflow-hidden justify-center">
       {showConfetti && (
         <ReactConfetti
           width={windowSize.width}

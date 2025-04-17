@@ -1,5 +1,6 @@
 'use client';
 import { ThemeToggle } from '@/shared/ui/theme-toggle';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export const Header = () => {
@@ -12,10 +13,14 @@ export const Header = () => {
       };
       requestAnimationFrame(raf);
 
-      document.querySelectorAll("a[href^='#']").forEach((anchor) => {
+      const anchorSelector = "a[href^='#'], a[href^='/#']";
+
+      const anchors = document.querySelectorAll<HTMLAnchorElement>(anchorSelector);
+
+      anchors.forEach((anchor) => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
-          const targetId = anchor.getAttribute('href')!;
+          const targetId = anchor.hash;
           const target = document.querySelector(targetId);
           if (target) {
             lenis.scrollTo(target as HTMLElement, { offset: -60 });
@@ -39,19 +44,21 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-background/80 text-foreground border-b border-black/10 dark:border-white/10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        <span className="font-bold text-xl tracking-tight">Makslab</span>
+        <Link href={'/'}>
+          <span className="font-bold text-xl tracking-tight">Makslab</span>
+        </Link>
 
         <div className="flex items-center gap-6">
           <ul className="hidden sm:flex space-x-6 text-sm font-medium">
             {navData.map((item) => {
               return (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="transition-colors hover:text-foreground/80 text-foreground"
                   >
                     {item.text}
-                  </a>
+                  </Link>
                 </li>
               );
             })}

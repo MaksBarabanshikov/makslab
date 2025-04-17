@@ -6,9 +6,9 @@ import {
   DialogTitle,
   DialogFooter,
   DialogClose,
-} from '@/shared/ui/dialog';
+} from '@/shared/ui/shadcn/dialog';
 import { Prize } from './Wheel';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/shadcn/button';
 
 interface Props {
   isOpen: boolean;
