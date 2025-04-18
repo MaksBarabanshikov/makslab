@@ -1,5 +1,5 @@
 'use client';
-import { Button, buttonVariants } from '@/shared/ui/shadcn/button';
+import { buttonVariants } from '@/shared/ui/shadcn/button';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
