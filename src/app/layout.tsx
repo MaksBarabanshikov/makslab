@@ -36,8 +36,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen bg-background text-foreground">
-            <Header />
+          <Header />
+          <main className="min-h-screen bg-background text-foreground" tabIndex={-1}>
             <PageWrapper>{children}</PageWrapper>
           </main>
         </ThemeProvider>
