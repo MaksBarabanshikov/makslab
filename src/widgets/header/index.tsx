@@ -1,5 +1,4 @@
 'use client';
-import { APP_NAME } from '@/shared/config/app';
 import { HEADER_NAV_ITEMS } from '@/shared/config/header';
 import { Logo } from '@/shared/ui/logo';
 import { ThemeToggle } from '@/shared/ui/theme-toggle';
