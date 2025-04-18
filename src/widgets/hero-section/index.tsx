@@ -1,5 +1,7 @@
 'use client';
+import { Button, buttonVariants } from '@/shared/ui/shadcn/button';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export const HeroSection = () => {
   return (
@@ -32,15 +34,9 @@ export const HeroSection = () => {
         transition={{ delay: 1 }}
         className="mt-10"
       >
-        <a
-          href="#projects"
-          className="inline-block px-6 py-3 rounded-xl text-foreground bg-background transition-all duration-300
-    shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.12)]
-    hover:-translate-y-1 active:scale-95
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]/50"
-        >
+        <Link className={buttonVariants({ size: 'lg' })} href="#projects">
           Смотреть проекты
-        </a>
+        </Link>
       </motion.div>
     </section>
   );
