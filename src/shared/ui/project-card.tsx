@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './shadcn/card';
 
 interface ProjectCardProps {
   title: string;
@@ -12,27 +13,35 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ title, description, tech, image, path }: ProjectCardProps) => {
   return (
-    <div className="bg-background border rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-      <Link href={path}>
+    <Link href={path} className="group block">
+      <Card className="overflow-hidden transition-shadow hover:shadow-lg">
         <Image
           src={image}
           alt={title}
           width={800}
-          height={500}
-          className="w-full h-48 object-cover"
+          height={534}
+          className="h-48 w-full object-cover transition-transform group-hover:scale-105"
+          priority
         />
-        <div className="p-4">
-          <h3 className="text-xl font-semibold mb-1">{title}</h3>
-          <p className="text-sm text-muted-foreground mb-3">{description}</p>
-          <div className="flex flex-wrap gap-2">
-            {tech.map((item, i) => (
-              <span key={i} className="text-xs bg-primary/10 px-2 py-1 rounded">
-                {item}
-              </span>
+
+        <CardHeader className="pb-2">
+          <CardTitle className="text-xl">{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+
+        <CardContent className="pt-0">
+          <ul className="flex flex-wrap gap-2">
+            {tech.map((t) => (
+              <li
+                key={t}
+                className="rounded bg-primary/10 px-2 py-1 text-xs uppercase tracking-wide"
+              >
+                {t}
+              </li>
             ))}
-          </div>
-        </div>
-      </Link>
-    </div>
+          </ul>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };

@@ -19,14 +19,12 @@ interface Props {
 export default function FortuneCongradulationModal({ isOpen, prize, onOpenChange }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-gray-800 border-gray-700 text-white">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="text-2xl text-center text-yellow-400">
-            🎉 Поздравляем! 🎉
-          </DialogTitle>
-          <DialogDescription className="text-center text-gray-300 pt-4 text-lg">
+          <DialogTitle className="text-2xl text-center">🎉 Поздравляем! 🎉</DialogTitle>
+          <DialogDescription className="text-center pt-4 text-lg">
             Вы выиграли:
-            <span className="block font-bold text-3xl text-green-400 pt-2 pb-4 underline">
+            <span className="block font-bold text-3xl text-green-400 pt-2 pb-4">
               {prize?.text ?? 'Что-то невероятное!'}
             </span>
             Желаем удачи в следующий раз!

@@ -83,7 +83,7 @@ const FortuneHistoryManager = forwardRef<FortuneHistoryManagerRef>((_, ref) => {
               Очистить всё
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent className="bg-gray-800 border-gray-700 text-white">
+          <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Вы уверены?</AlertDialogTitle>
               <AlertDialogDescription>
