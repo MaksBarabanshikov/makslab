@@ -1,0 +1,123 @@
+.deal-wheel {
+  --size: clamp(250px, 80vmin, 700px);
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+    hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+    hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+  );
+  position: relative;
+  display: grid;
+  gap: calc(var(--size) / 20);
+  place-items: center;
+  font-size: calc(var(--size) / 21);
+
+  grid-template-areas:
+    'spinner'
+    'trigger';
+}
+
+.deal-wheel > * {
+  grid-area: spinner;
+}
+
+.deal-wheel .btn-spin {
+  grid-area: trigger;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.deal-wheel .btn-spin:disabled {
+  cursor: progress;
+  opacity: 0.25;
+}
+
+.spinner {
+  position: relative;
+  display: grid;
+  align-items: center;
+  border-radius: 9999px;
+  width: var(--size);
+  height: var(--size);
+  overflow: hidden;
+  grid-template-areas: 'spinner';
+  transform: rotate(var(--rotate, 0deg));
+}
+
+.spinner * {
+  grid-area: spinner;
+}
+
+.prize {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 20);
+  transform-origin: center right;
+}
+
+.prize .text {
+  color: black;
+  font-weight: 700;
+}
+
+.prize.selected .text {
+  color: white;
+  animation: selected 800ms ease;
+}
+
+@keyframes selected {
+  25% {
+    transform: scale(1.25);
+    text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1);
+  }
+  40% {
+    transform: scale(0.92);
+    text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
+  }
+  60% {
+    transform: scale(1.02);
+    text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
+  }
+  75% {
+    transform: scale(0.98);
+  }
+  85% {
+    transform: scale(1);
+  }
+}
+
+.ticker {
+  position: relative;
+  top: 0;
+  width: calc(var(--size) / 10);
+  height: calc(var(--size) / 20);
+  background: var(--lg);
+  z-index: 1;
+  clip-path: polygon(20% 0, 100% 50%, 20% 100%, 0% 50%);
+  transform-origin: center center;
+  transform: rotate(-90deg);
+}
+
+.is-spinning .spinner {
+  transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
+}
+
+.is-spinning .ticker {
+  animation: tick 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes tick {
+  40% {
+    transform: rotate(-12deg);
+  }
+}
+.animate-selected {
+  animation: selected 800ms ease;
+}
