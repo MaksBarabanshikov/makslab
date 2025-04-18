@@ -1,5 +1,7 @@
 'use client';
+
 import { HEADER_NAV_ITEMS } from '@/shared/config/header';
+import { Logo } from '@/shared/ui/logo';
 import { ThemeToggle } from '@/shared/ui/theme-toggle';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -39,10 +41,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-background/80 text-foreground border-b border-black/10 dark:border-white/10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        <Link href={'/'}>
-          <span className="font-bold text-xl tracking-tight">Makslab</span>
-        </Link>
-
+        <Logo />
         <div className="flex items-center gap-6">
           <ul className="hidden sm:flex space-x-6 text-sm font-medium">
             {navItems.map((item) => {

@@ -1,34 +1,36 @@
 // src/widgets/projects-section/index.tsx
 import { ProjectCard } from '@/shared/ui/project-card';
 
+const prefix = '/projects';
+
 const projects = [
   {
     title: 'Колесо фортуны',
     description: 'Колесо фортуны с изменением параметров',
     tech: ['Next.js', 'GSAP', 'Framer Motion'],
     image: '/image.png',
-    path: '/wheel',
+    path: `${prefix}/wheel`,
   },
   {
     title: 'Фуллскрин Scroll сайт',
     description: 'Сайт с анимацией скролла и эффектами',
     tech: ['Next.js', 'GSAP', 'Framer Motion'],
     image: '/image.png',
-    path: '/thumb',
+    path: `${prefix}/thumb`,
   },
   {
     title: 'Список товаров',
     description: 'Каталог с фильтрами, SSR и ISR',
     tech: ['Next.js', 'TailwindCSS', 'Zustand'],
     image: '/image.png',
-    path: '/thumb',
+    path: `${prefix}/thumb`,
   },
   {
     title: 'UI Playground',
     description: 'Компоненты и UI-эксперименты',
     tech: ['React', 'Shadcn', 'Radix UI'],
     image: '/image.png',
-    path: '/thumb',
+    path: `${prefix}/thumb`,
   },
 ];
 

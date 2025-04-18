@@ -198,7 +198,7 @@ export default function FortuneWheel({
       </ul>
 
       <div className="ticker" ref={tickerRef}></div>
-      <Button onClick={spin} disabled={isSpinning} className="btn-spin" variant={'secondary'}>
+      <Button onClick={spin} disabled={isSpinning} className="btn-spin">
         Крутить
       </Button>
     </div>
