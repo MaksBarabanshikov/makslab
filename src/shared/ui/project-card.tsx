@@ -9,10 +9,8 @@ interface ProjectCardProps {
   tech: string[];
   image: string;
   path: string;
-  path: string;
 }
 
-export const ProjectCard = ({ title, description, tech, image, path }: ProjectCardProps) => {
 export const ProjectCard = ({ title, description, tech, image, path }: ProjectCardProps) => {
   return (
     <Link href={path} className="group block">
@@ -47,4 +45,3 @@ export const ProjectCard = ({ title, description, tech, image, path }: ProjectCa
     </Link>
   );
 };
-
